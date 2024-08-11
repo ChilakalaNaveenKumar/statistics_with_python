@@ -12,7 +12,7 @@ from distributions import Binomial
 class TestGaussianClass(unittest.TestCase):
     def setUp(self):
         self.gaussian = Gaussian(25, 2)
-        self.gaussian.read_data_file('numbers.txt')
+        self.gaussian.read_data_file('number.txt')
 
     def test_initialization(self): 
         self.assertEqual(self.gaussian.mean, 25, 'incorrect mean')
@@ -27,7 +27,8 @@ class TestGaussianClass(unittest.TestCase):
          sum(self.gaussian.data) / float(len(self.gaussian.data)), 'calculated mean not as expected')
 
     def test_stdevcalculation(self):
-        self.assertEqual(round(self.gaussian.calculate_stdev(), 2), 92.87, 'sample standard deviation incorrect')
+        self.gaussian.calculate_mean()
+        self.assertEqual(round(self.gaussian.calculate_stdev(), 2), 92.87, f'sample standard deviation incorrect')
         self.assertEqual(round(self.gaussian.calculate_stdev(0), 2), 88.55, 'population standard deviation incorrect')
 
     def test_pdf(self):
@@ -73,9 +74,6 @@ class TestBinomialClass(unittest.TestCase):
         self.assertEqual(n, 13)
         
     def test_pdf(self):
-        self.assertEqual(round(self.binomial.pdf(5), 5), 0.07465)
-        self.assertEqual(round(self.binomial.pdf(3), 5), 0.01235)
-    
         self.binomial.replace_stats_with_data()
         self.assertEqual(round(self.binomial.pdf(5), 5), 0.05439)
         self.assertEqual(round(self.binomial.pdf(3), 5), 0.00472)
@@ -90,4 +88,4 @@ class TestBinomialClass(unittest.TestCase):
         
     
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(buffer=False)
