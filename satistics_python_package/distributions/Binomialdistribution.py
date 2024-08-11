@@ -48,8 +48,10 @@ class Binomial(Distribution):
         #               The init function can get access to these methods via the self
         #               variable.   
         Distribution.__init__(self)
-        self.mean = prob * size
-        self.stdev = math.sqrt(size * prob * (1-prob))
+        self.p = prob
+        self.n = size
+        self.mean = self.p * self.n
+        self.stdev = math.sqrt(self.n * self.p * (1 - self.p))
     
     def calculate_mean(self):
     
