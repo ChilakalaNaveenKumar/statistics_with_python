@@ -50,8 +50,8 @@ class Binomial(Distribution):
         Distribution.__init__(self)
         self.p = prob
         self.n = size
-        self.mean = self.p * self.n
-        self.stdev = math.sqrt(self.n * self.p * (1 - self.p))
+        self.mean = self.calculate_stdev()
+        self.stdev = self.calculate_stdev()
     
     def calculate_mean(self):
     
@@ -68,7 +68,7 @@ class Binomial(Distribution):
         # TODO: calculate the mean of the Binomial distribution. Store the mean
         #       via the self variable and also return the new mean value
                 
-        pass 
+        return 1.0 * self.p * self.n 
 
 
 
@@ -87,7 +87,7 @@ class Binomial(Distribution):
         # TODO: calculate the standard deviation of the Binomial distribution. Store
         #       the result in the self standard deviation attribute. Return the value
         #       of the standard deviation.
-        pass
+        return math.sqrt(self.n * self.p * (1 - self.p))
         
         
         
