@@ -54,9 +54,7 @@ class Gaussian(Distribution):
 		n = len(self.data) - 1 if sample else len(self.data)
 		sigma = 0
 		for d in self.data:
-			print(f'd: {d}, mean: {self.mean} sigma: {(d - self.mean) ** 2}')
 			sigma += (d - self.mean) ** 2
-		print(f'sigma: {sigma}')
 		sigma = math.sqrt(sigma / n)
 	
 		self.stdev = sigma
