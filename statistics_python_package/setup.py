@@ -7,10 +7,8 @@ setup(
     author='Chilakala Naveen Kumar',
     author_email='naveen.chilakala@gmail.com',
     install_requires=[
-      'distributions>=0.1',
       'matplotlib>=3.9.1.post1',
       'numpy>=2.0.1',
       'scipy>=1.14.0'
-
     ]
 )
