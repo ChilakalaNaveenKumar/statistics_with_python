@@ -1,6 +1,9 @@
 import math
 import matplotlib.pyplot as plt
-from Generaldistribution import Distribution
+from .Generaldistribution import Distribution
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 class Gaussian(Distribution):
 	""" Gaussian distribution class for calculating and 
@@ -15,8 +18,10 @@ class Gaussian(Distribution):
 	def __init__(self, mu=0, sigma=1):
 		
 		Distribution.__init__(self, mu, sigma)
+		self.mean = mu
+		self.stdev = sigma
+		self.data = []
 
-	
 	def calculate_mean(self):
 	
 		"""Function to calculate the mean of the data set.
@@ -29,15 +34,12 @@ class Gaussian(Distribution):
 	
 		"""
 					
-		avg = 1.0 * sum(self.data) / len(self.data)
-		
-		self.mean = avg
-		
+		self.mean  = sum(self.data) / float(len(self.data))
 		return self.mean
 
 
 
-	def calculate_stdev(self, sample=True):
+	def calculate_stdev(self, sample = True):
 
 		"""Function to calculate the standard deviation of the data set.
 		
@@ -49,18 +51,12 @@ class Gaussian(Distribution):
 	
 		"""
 
-		if sample:
-			n = len(self.data) - 1
-		else:
-			n = len(self.data)
-	
-		mean = self.mean
-	
+		n = len(self.data) - 1 if sample else len(self.data)
 		sigma = 0
-	
 		for d in self.data:
-			sigma += (d - mean) ** 2
-		
+			print(f'd: {d}, mean: {self.mean} sigma: {(d - self.mean) ** 2}')
+			sigma += (d - self.mean) ** 2
+		print(f'sigma: {sigma}')
 		sigma = math.sqrt(sigma / n)
 	
 		self.stdev = sigma
@@ -68,31 +64,30 @@ class Gaussian(Distribution):
 		return self.stdev
 		
 
-	def read_data_file(self, file_name, sample=True):
+	# def read_data_file(self, file_name):
 	
-		"""Function to read in data from a txt file. The txt file should have
-		one number (float) per line. The numbers are stored in the data attribute. 
-		After reading in the file, the mean and standard deviation are calculated
+	# 	"""Function to read in data from a txt file. The txt file should have
+	# 	one number (float) per line. The numbers are stored in the data attribute. 
+	# 	After reading in the file, the mean and standard deviation are calculated
 				
-		Args:
-			file_name (string): name of a file to read from
+	# 	Args:
+	# 		file_name (string): name of a file to read from
 		
-		Returns:
-			None
+	# 	Returns:
+	# 		None
 		
-		"""
+	# 	"""
 			
-		with open(file_name) as file:
-			data_list = []
-			line = file.readline()
-			while line:
-				data_list.append(int(line))
-				line = file.readline()
-		file.close()
+	# 	with open(file_name) as file:
+	# 		data_list = []
+	# 		line = file.readline()
+	# 		while line:
+	# 			data_list.append(int(line))
+	# 			line = file.readline()
+	# 	file.close()
 	
-		self.data = data_list
-		self.mean = self.calculate_mean()
-		self.stdev = self.calculate_stdev(sample)
+	# 	self.data = data_list
+	# 	self.calculate_mean()
 		
 		
 	def plot_histogram(self):
@@ -123,7 +118,7 @@ class Gaussian(Distribution):
 			float: probability density function output
 		"""
 		
-		return (1.0 / (self.stdev * math.sqrt(2*math.pi))) * math.exp(-0.5*((x - self.mean) / self.stdev) ** 2)
+		return (1.0 / (self.stdev * math.sqrt(2 * math.pi))) * math.exp(-0.5*(((x - self.mean) / self.stdev) ** 2))
 		
 
 	def plot_histogram_pdf(self, n_spaces = 50):
