@@ -1,3 +1,8 @@
 bin/
 lib/
 share/
+statistics_python_package/distributions.egg-info/
+statistics_python_package/statistics_python_package.egg-info/
+.vscode/
+include/
+pyvenv.cfg/
