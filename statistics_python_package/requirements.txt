@@ -1,3 +1,4 @@
 matplotlib==3.9.1.post1
 numpy==2.0.1
 scipy==1.14.0
+twine==5.1.1

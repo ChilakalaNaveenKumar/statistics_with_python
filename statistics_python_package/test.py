@@ -6,8 +6,8 @@
 
 import unittest
 
-from gaussian_binomial_distributions import Gaussian
-from gaussian_binomial_distributions import Binomial
+from statistics_gaussian_binomial_distributions import Gaussian
+from statistics_gaussian_binomial_distributions import Binomial
 
 class TestGaussianClass(unittest.TestCase):
     def setUp(self):

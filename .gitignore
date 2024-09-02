@@ -7,3 +7,5 @@ statistics_python_package/statistics_python_package.egg-info/
 include/
 pyvenv.cfg/
 .venv/
+statistics_python_package/.pypirc
+dist/
