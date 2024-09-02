@@ -15,4 +15,19 @@
 | **Procedural programming** | A program written in a single file where the instructions go from top to bottom.                                                                             |
 | **Scikit-learn**     | A library used in predictive data analysis and machine learning in Python.                                                                                         |
 | **self**             | Tells Python where to look in the computer's memory for the current object.                                                                                        |
-| **Virtual environment** | A simulated computer that is not physical, includes simulated hardware and software, and acts as a real-world object.                                             |
+| **Virtual environment** | A simulated computer that is not physical, includes simulated hardware and software, and acts as a real-world object.   
+
+
+*Project Setup:* 
+
+cd binomial_package_files
+python setup.py sdist
+pip install twine
+
+# commands to upload to the pypi test repository
+twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+pip install --index-url https://test.pypi.org/simple/ dsnd-probability
+
+# command to upload to the pypi repository
+twine upload dist/*
+pip install dsnd-probability                                         |
