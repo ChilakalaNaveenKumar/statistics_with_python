@@ -18,16 +18,16 @@
 | **Virtual environment** | A simulated computer that is not physical, includes simulated hardware and software, and acts as a real-world object.   
 
 
-*Project Setup:* 
+# Project Setup:
 
-cd binomial_package_files
-python setup.py sdist
-pip install twine
+cd statistics_python_package  
+python setup.py sdist  
+pip install twine  
 
-# commands to upload to the pypi test repository
-twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-pip install --index-url https://test.pypi.org/simple/ dsnd-probability
+`commands to upload to the pypi test repository`  
+twine upload --repository-url https://test.pypi.org/legacy/ dist/*  
+pip install --index-url https://test.pypi.org/simple/ dsnd-probability  
 
-# command to upload to the pypi repository
-twine upload dist/*
-pip install dsnd-probability                                         |
+`command to upload to the pypi repository`  
+twine upload dist/*  
+pip install dsnd-probability
